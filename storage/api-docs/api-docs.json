@@ -1,0 +1,196 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "",
+        "contact": {
+            "email": "manan@mananpatel.in"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/books": {
+            "get": {
+                "tags": [
+                    "Library"
+                ],
+                "summary": "Get list of books from data base",
+                "operationId": "books",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/book/{book_id}": {
+            "get": {
+                "tags": [
+                    "Library"
+                ],
+                "summary": "Get book by id from data base",
+                "operationId": "bookid",
+                "parameters": [
+                    {
+                        "name": "book_id",
+                        "in": "path",
+                        "description": "value id of the book",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/updatebook/{bookId}": {
+            "post": {
+                "tags": [
+                    "Library"
+                ],
+                "summary": "Updates a book in data base",
+                "description": "",
+                "operationId": "updateBookInDb",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "ID of user that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the book",
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "description": "Updated author of the book",
+                                        "type": "string"
+                                    },
+                                    "category": {
+                                        "description": "Updated category of the book",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Updated description of this book",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/addbook": {
+            "post": {
+                "tags": [
+                    "Library"
+                ],
+                "summary": "Add a new book in data base",
+                "description": "Add a book in data base",
+                "operationId": "AddBookInDb",
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Add name of the book",
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "description": "Add author of the book",
+                                        "type": "string"
+                                    },
+                                    "category": {
+                                        "description": "Add category of the book",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Add description of this book",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/deletebook/{id}": {
+            "delete": {
+                "tags": [
+                    "Library"
+                ],
+                "summary": "Delete a book from data base",
+                "description": "Deletes a book by id",
+                "operationId": "deleteBook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book id to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Library",
+            "description": "Operations with books"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
